@@ -26,14 +26,16 @@ app.use('/public',express.static(__dirname + '/public'))
 
 
 //** Use the .env File */
-const mySecret = process.env['MESSAGE_STYLE']
 var message = {'message': "Hello json"} 
 app.get('/json',(request,response) => {
     var jsonResponse = {'message': "HELLO JSON" };
-    if (mySecret === "uppercase") {
-    jsonResponse.message = jsonResponse.message.toUpperCase();
-  }
+    if (process.env.MESSAGE_STYLE === "uppercase") {
     response.json(jsonResponse);
+  }
+    response.json(message);
 })
+
+
+
 
  module.exports = app;
