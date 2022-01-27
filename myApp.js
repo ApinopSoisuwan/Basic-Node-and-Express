@@ -29,13 +29,11 @@ app.use('/public',express.static(__dirname + '/public'))
 const mySecret = process.env['MESSAGE_STYLE']
 var message = {'message': "Hello json"} 
 app.get('/json',(request,response) => {
+    var jsonResponse = {'message': "HELLO JSON" };
     if (mySecret === "uppercase") {
-    response.json({'message': "HELLO JSON" });
-  } else {
-    response.json(message);
+    jsonResponse.message = jsonResponse.message.toUpperCase();
   }
+    response.json(jsonResponse);
 })
-
-
 
  module.exports = app;
