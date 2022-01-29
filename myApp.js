@@ -55,12 +55,18 @@ app.get('/now', function( req, res, next){
 /** Get Route Parameter Input from the Client */
 
 app.get('/:word/echo', function(req ,res ){
-  var { word} = req.params;
+  var { word } = req.params;
   res.json({
     echo : word
   })
 })
 
+
+/** Get Query Parameter Input from the Client */
+
+app.get('/name' , function(req ,res ) {
+  res.json({ name: req.query.first + " " + req.query.last})
+})
 
 
  module.exports = app;
