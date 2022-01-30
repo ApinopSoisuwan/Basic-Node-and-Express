@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
+ 
 
 
 
@@ -77,9 +77,14 @@ app.get('/:word/echo', function(req ,res ){
 
 /** Get Query Parameter Input from the Client */
 
-app.get('/name' , function(req ,res ) {
+app.get('/name' , function(req ,res) {
   res.json({ name: req.query.first + " " + req.query.last})
 })
 
+
+/** Get Data from POST Requests */
+app.post('/name',function( req,res ){
+  res.json(({name: req.body.first + " " + req.body.last}))
+});
 
  module.exports = app;
