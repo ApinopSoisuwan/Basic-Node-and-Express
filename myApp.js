@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 require('dotenv').config();
@@ -9,17 +10,29 @@ require('dotenv').config();
   respone.send('Hello Express')
 })*/
 
+
+
+
 /** Implement a Root-Level Request Logger Middleware  */
 app.use(function(req , res , next) {
   console.log(req.method + " " + req.path + " - " + req.ip)
   next()
 })
 
+/** Use body-parser to Parse POST Requests */
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
+
+
 /** Serve an HTML File */
 var html_path =  __dirname + "/views/index.html"
 app.get("/",function(request,response){
   response.sendFile(html_path)
-})
+});
 
 
 /** Serve Static Assets */
